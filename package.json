@@ -1,0 +1,55 @@
+{
+  "name": "wpscripts",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Generic config",
+  "author": "Djalma Jr. <djalmajr@gmail.com>",
+  "license": "UNLICENSED",
+  "main": "index.js",
+  "contributors": [],
+  "homepage": "https://github.com/djalmajr/wpscripts/tree/master#readme",
+  "bugs": {
+    "url": "https://github.com/djalmajr/wpscripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:djalmajr/wpscripts.git"
+  },
+  "bin": {
+    "wpscripts-build": "bin/build.js",
+    "wpscripts-build-dev": "bin/build-dev.js",
+    "wpscripts-changelog": "bin/changelog.js",
+    "wpscripts-gh-deploy": "bin/gh-deploy.js",
+    "wpscripts-postversion": "bin/postversion.js",
+    "wpscripts-prettier": "bin/prettier.js",
+    "wpscripts-serve": "bin/serve.js",
+    "wpscripts-start": "bin/start.js",
+    "wpscripts-version": "bin/version.js"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.3.1",
+    "babel-eslint": "^10.0.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "conventional-changelog-cli": "^2.0.11",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.1",
+    "eslint": "^5.8.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "gh-pages": "^2.0.1",
+    "html-webpack-externals-plugin": "^3.8.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "live-server": "^1.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.14.3",
+    "shelljs": "^0.8.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.24.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  }
+}
