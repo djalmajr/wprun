@@ -1,3 +1,5 @@
 #! /usr/bin/env node
 var shell = require("shelljs");
-shell.exec("cross-env NODE_ENV=production webpack --mode=production");
+const mode = process.argv[2] || "--mode=production";
+const env = mode.split("=")[1];
+shell.exec(`cross-env NODE_ENV=${env} webpack ${mode}`);
