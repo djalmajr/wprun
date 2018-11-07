@@ -1,6 +1,6 @@
 {
   "name": "wprun",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Generic Webpack Config",
   "author": "Djalma Jr. <djalmajr@gmail.com>",
   "license": "UNLICENSED",
