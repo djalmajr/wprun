@@ -30,9 +30,9 @@ module.exports = (root, config = {}) => {
           use: [
             {
               loader: "file-loader",
-              options: { emitFile: false, name: "[path][name].[ext]" }
-            }
-          ]
+              options: { emitFile: false, name: "[path][name].[ext]" },
+            },
+          ],
         },
         {
           test: /\.less$/,
@@ -44,20 +44,20 @@ module.exports = (root, config = {}) => {
                 sourceMap: true,
                 modules: true,
                 importLoaders: true,
-                localIdentName: "[name]-[local]"
-              }
+                localIdentName: "[name]-[local]",
+              },
             },
             {
               loader: "postcss-loader",
-              options: { plugins: () => [autoprefixer] }
+              options: { plugins: () => [autoprefixer] },
             },
-            { loader: "less-loader" }
-          ]
-        }
-      ]
+            { loader: "less-loader" },
+          ],
+        },
+      ],
     },
     resolve: {
-      modules: [path.resolve(root, "./src"), "node_modules"]
+      modules: [path.resolve(root, "./src"), "node_modules"],
     },
     devServer: {
       compress: true,
@@ -67,8 +67,8 @@ module.exports = (root, config = {}) => {
       port: PORT,
       hot: HOT === "true",
       publicPath: `http://localhost:${PORT}/`,
-      stats: { chunks: false, colors: true, reasons: false }
-    }
+      stats: { chunks: false, colors: true, reasons: false },
+    },
   };
 
   defaults.plugins = [
@@ -80,21 +80,21 @@ module.exports = (root, config = {}) => {
         collapseWhitespace: true,
         removeComments: true,
         minifyJS: true,
-        minifyCSS: true
+        minifyCSS: true,
       },
-      ...htmlPluginOptions
+      ...htmlPluginOptions,
     }),
     new MiniCssPlugin({ filename: "style.css" }),
     new CopyPlugin([
       { from: "*.css", to: "./", context: path.resolve(__dirname, "public") },
-      ...copyPluginOptions
+      ...copyPluginOptions,
     ]),
     new ExternalsPlugin({
       cwpOptions: {
-        context: path.resolve(root, "node_modules")
+        context: path.resolve(root, "node_modules"),
       },
-      ...externalsPluginOptions
-    })
+      ...externalsPluginOptions,
+    }),
   ];
 
   if (HOT) {
