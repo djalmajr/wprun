@@ -11,6 +11,24 @@ const MiniCssPlugin = require("mini-css-extract-plugin");
 const { HOT, NODE_ENV, PORT = 8080, HOST = "localhost" } = process.env;
 const DEV = NODE_ENV === "development";
 
+const styleLoaders = [
+  DEV ? { loader: "style-loader" } : MiniCssExtractPlugin.loader,
+  {
+    loader: "css-loader",
+    options: {
+      camelCase: true,
+      sourceMap: true,
+      modules: true,
+      importLoaders: true,
+      localIdentName: "[name]__[local]__[hash:base64:10]",
+    },
+  },
+  {
+    loader: "postcss-loader",
+    options: { plugins: () => [autoprefixer] },
+  },
+];
+
 module.exports = (root, config = {}) => {
   const {
     copyPluginOptions = [],
@@ -26,33 +44,36 @@ module.exports = (root, config = {}) => {
     module: {
       rules: [
         {
-          test: /\.(png|jpg|gif)$/,
-          use: [
-            {
-              loader: "file-loader",
-              options: { emitFile: false, name: "[path][name].[ext]" },
-            },
-          ],
+          test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+          loader: "file-loader",
+        },
+        {
+          test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-woff",
+        },
+        {
+          test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+          loader: "url-loader?limit=10000&mimetype=application/octet-stream",
+        },
+        {
+          test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+          loader: "url-loader?limit=10000&mimetype=image/svg+xml",
+        },
+        {
+          test: /\.(ico|jpe?g|png|gif)$/i,
+          loader: "file-loader?name=[name].[ext]",
+        },
+        {
+          test: /\.css$/,
+          use: [DEV ? "style-loader" : MiniCssPlugin.loader, "css-loader"],
         },
         {
           test: /\.less$/,
-          use: [
-            DEV ? { loader: "style-loader" } : MiniCssPlugin.loader,
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: true,
-                modules: true,
-                importLoaders: true,
-                localIdentName: "[name]-[local]",
-              },
-            },
-            {
-              loader: "postcss-loader",
-              options: { plugins: () => [autoprefixer] },
-            },
-            { loader: "less-loader" },
-          ],
+          use: [...styleLoaders, { loader: "less-loader" }],
+        },
+        {
+          test: /\.s[ac]ss$/,
+          use: [...styleLoaders, { loader: "sass-loader" }],
         },
       ],
     },
@@ -90,9 +111,7 @@ module.exports = (root, config = {}) => {
       ...copyPluginOptions,
     ]),
     new ExternalsPlugin({
-      cwpOptions: {
-        context: path.resolve(root, "node_modules"),
-      },
+      cwpOptions: { context: path.resolve(root, "node_modules") },
       ...externalsPluginOptions,
     }),
   ];
