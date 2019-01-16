@@ -12,10 +12,11 @@
   <meta name="description" content="<%= htmlWebpackPlugin.options.description || 'Content'%>">
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="stylesheet" href="base.css" />
 
   <% if (htmlWebpackPlugin.options.stylesheets) { %>
     <% for (var stylesheet of htmlWebpackPlugin.options.stylesheets) { %>
-      <link href="<%= stylesheet %>" rel="stylesheet" />
+      <link rel="stylesheet" href="<%= stylesheet %>" />
     <% } %>
   <% } %>
 </head>

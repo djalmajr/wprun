@@ -96,7 +96,6 @@ module.exports = (root, config = {}) => {
     new CleanPlugin(["dist"], { root, verbose: true }),
     new HtmlPlugin({
       template: path.resolve(__dirname, "public/index.ejs"),
-      stylesheets: ["base.css"],
       minify: {
         collapseWhitespace: true,
         removeComments: true,
