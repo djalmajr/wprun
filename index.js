@@ -12,7 +12,7 @@ const { HOT, NODE_ENV, PORT = 8080, HOST = "localhost" } = process.env;
 const DEV = NODE_ENV === "development";
 
 const styleLoaders = [
-  DEV ? { loader: "style-loader" } : MiniCssExtractPlugin.loader,
+  DEV ? { loader: "style-loader" } : MiniCssPlugin.loader,
   {
     loader: "css-loader",
     options: {
